@@ -1,0 +1,581 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Appscrip storefront",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev"
+			],
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc-watch"
+			]
+		},
+		{
+			"label": "Start local Appscrip database",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"prisma",
+				"dev",
+				"--name",
+				"appscrip-fullstack-20261007",
+				"--port",
+				"51315",
+				"--db-port",
+				"51316",
+				"--shadow-db-port",
+				"51317"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify Appscrip auth integration",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"backend",
+				"test"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build Appscrip after auth update",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check backend TypeScript",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"tsc",
+				"-p",
+				"backend/tsconfig.json"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check frontend TypeScript",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"tsc",
+				"--noEmit",
+				"-p",
+				"frontend/tsconfig.json"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build frontend storefront",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"frontend",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Typecheck notification frontend",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"tsc",
+				"--noEmit",
+				"-p",
+				"frontend/tsconfig.json"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run notification frontend",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"frontend",
+				"run",
+				"dev"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Final frontend typecheck",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"tsc",
+				"--noEmit",
+				"-p",
+				"frontend/tsconfig.json"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Test auth and CORS fix",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"backend",
+				"test"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Retest auth and cart",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"backend",
+				"test"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Backend auth typecheck",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"tsc",
+				"-p",
+				"backend/tsconfig.json"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Frontend auth typecheck",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"tsc",
+				"--noEmit",
+				"-p",
+				"frontend/tsconfig.json"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Validate named database setup",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"prisma",
+				"validate",
+				"--schema",
+				"backend/prisma/schema.prisma"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Validate Prisma schema",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"backend",
+				"exec",
+				"--",
+				"prisma",
+				"validate"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Validate migration state",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"backend",
+				"exec",
+				"--",
+				"prisma",
+				"migrate",
+				"status"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run backend integration tests",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"backend",
+				"test"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start temporary test database",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"prisma",
+				"dev",
+				"--name",
+				"appscrip-fullstack-20261007",
+				"--port",
+				"51315",
+				"--db-port",
+				"51316",
+				"--shadow-db-port",
+				"51317"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run database integration suite",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"backend",
+				"test"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Identify storefront dev process",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Get-NetTCPConnection -State Listen -LocalPort 3002 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop broken storefront process",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Stop-Process -Id 37604 -Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Clear broken Next build cache",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"$cache = 'C:\\Users\\vaibh\\Appscrip-FullStack-Assignment\\frontend\\.next'; if (Test-Path -LiteralPath $cache) { Remove-Item -LiteralPath $cache -Recurse -Force }"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Clear Next generated cache",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"-e",
+				"require('node:fs').rmSync('frontend/.next',{recursive:true,force:true})"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Remove stale Next artifacts",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"rmdir /s /q frontend\\.next"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Identify Appscrip API process",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Get-NetTCPConnection -State Listen -LocalPort 4000 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Restart Appscrip API cleanly",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Stop-Process -Id 51472 -Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run fixed Appscrip app",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify PostgreSQL-backed auth",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"backend",
+				"test"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install Stripe checkout SDK",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"install",
+				"--workspace",
+				"backend",
+				"stripe@^18.0.0"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop API for Prisma generation",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"$pids = Get-NetTCPConnection -State Listen -LocalPort 4000 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique; foreach ($processId in $pids) { Stop-Process -Id $processId -Force }"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Regenerate Prisma client",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"backend",
+				"run",
+				"prisma:generate"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Typecheck order flows",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"tsc",
+				"--noEmit",
+				"-p",
+				"frontend/tsconfig.json"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Frontend order typecheck",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"tsc",
+				"--noEmit",
+				"-p",
+				"frontend/tsconfig.json"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Backend order typecheck",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"tsc",
+				"-p",
+				"backend/tsconfig.json"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Order API integration tests",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"backend",
+				"test"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Generate Prisma order client",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"backend",
+				"run",
+				"prisma:generate"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check order service listeners",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Get-NetTCPConnection -State Listen -LocalPort 3000,3001,3002,4000 -ErrorAction SilentlyContinue | Select-Object LocalPort,OwningProcess"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check orders route response",
+			"type": "shell",
+			"command": "curl.exe",
+			"args": [
+				"-i",
+				"http://localhost:4000/orders"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Typecheck checkout frontend",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"tsc",
+				"--noEmit",
+				"-p",
+				"frontend/tsconfig.json"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Final backend order tests",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"backend",
+				"test"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Final backend typecheck",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"backend",
+				"run",
+				"typecheck"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Backend TypeScript validation",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"tsc",
+				"-p",
+				"backend/tsconfig.json",
+				"--noEmit"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Full production build",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Frontend production build",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--workspace",
+				"frontend",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

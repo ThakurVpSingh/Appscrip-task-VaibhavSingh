@@ -1,0 +1,28 @@
+{
+  "name": "appscrip-fullstack-assignment",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c blue,green \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm --workspace backend run dev",
+    "dev:web": "npm --workspace frontend run dev",
+    "build": "npm --workspace backend run build && npm --workspace frontend run build",
+    "db:generate": "npm --workspace backend run prisma:generate",
+    "db:migrate": "npm --workspace backend run prisma:migrate",
+    "db:deploy": "npm --workspace backend run prisma:deploy",
+    "db:seed": "npm --workspace backend run seed"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.4"
+  },
+  "overrides": {
+    "shell-quote": "^1.11.0"
+  },
+  "dependencies": {
+    "@neon/config": "^1.8.6",
+    "@neon/env": "^1.5.3"
+  }
+}
