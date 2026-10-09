@@ -1,0 +1,395 @@
+export const catalogData = [
+  {
+    "id": "prod-1",
+    "fakeStoreId": 1,
+    "name": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+    "slug": "fjallraven-foldsack-no-1-backpack-fits-15-laptops-1",
+    "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+    "price": 109.95,
+    "compareAtPrice": 137.44,
+    "ratingRate": 3.9,
+    "ratingCount": 120,
+    "isNew": true,
+    "categoryId": "cat-mens-clothing",
+    "category": {
+      "id": "cat-mens-clothing",
+      "name": "Men's Clothing",
+      "slug": "mens-clothing"
+    },
+    "images": [
+      {
+        "id": "img-1-1",
+        "url": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
+        "alt": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops product image",
+        "position": 0,
+        "productId": "prod-1"
+      }
+    ],
+    "createdAt": "2026-09-20T13:00:08.650Z"
+  },
+  {
+    "id": "prod-2",
+    "fakeStoreId": 2,
+    "name": "Mens Casual Premium Slim Fit T-Shirts ",
+    "slug": "mens-casual-premium-slim-fit-t-shirts-2",
+    "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+    "price": 22.3,
+    "compareAtPrice": null,
+    "ratingRate": 4.1,
+    "ratingCount": 259,
+    "isNew": true,
+    "categoryId": "cat-mens-clothing",
+    "category": {
+      "id": "cat-mens-clothing",
+      "name": "Men's Clothing",
+      "slug": "mens-clothing"
+    },
+    "images": [
+      {
+        "id": "img-2-1",
+        "url": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
+        "alt": "Mens Casual Premium Slim Fit T-Shirts  product image",
+        "position": 0,
+        "productId": "prod-2"
+      }
+    ],
+    "createdAt": "2026-09-21T13:00:08.650Z"
+  },
+  {
+    "id": "prod-3",
+    "fakeStoreId": 3,
+    "name": "Mens Cotton Jacket",
+    "slug": "mens-cotton-jacket-3",
+    "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
+    "price": 55.99,
+    "compareAtPrice": 69.99,
+    "ratingRate": 4.7,
+    "ratingCount": 500,
+    "isNew": true,
+    "categoryId": "cat-mens-clothing",
+    "category": {
+      "id": "cat-mens-clothing",
+      "name": "Men's Clothing",
+      "slug": "mens-clothing"
+    },
+    "images": [
+      {
+        "id": "img-3-1",
+        "url": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_t.png",
+        "alt": "Mens Cotton Jacket product image",
+        "position": 0,
+        "productId": "prod-3"
+      }
+    ],
+    "createdAt": "2026-09-22T13:00:08.650Z"
+  },
+  {
+    "id": "prod-4",
+    "fakeStoreId": 4,
+    "name": "Mens Casual Slim Fit",
+    "slug": "mens-casual-slim-fit-4",
+    "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
+    "price": 15.99,
+    "compareAtPrice": null,
+    "ratingRate": 2.1,
+    "ratingCount": 430,
+    "isNew": true,
+    "categoryId": "cat-mens-clothing",
+    "category": {
+      "id": "cat-mens-clothing",
+      "name": "Men's Clothing",
+      "slug": "mens-clothing"
+    },
+    "images": [
+      {
+        "id": "img-4-1",
+        "url": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_t.png",
+        "alt": "Mens Casual Slim Fit product image",
+        "position": 0,
+        "productId": "prod-4"
+      }
+    ],
+    "createdAt": "2026-09-23T13:00:08.650Z"
+  },
+  {
+    "id": "prod-5",
+    "fakeStoreId": 5,
+    "name": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+    "slug": "john-hardy-womens-legends-naga-gold-silver-dragon-station-chain-bracelet-5",
+    "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
+    "price": 695,
+    "compareAtPrice": 868.75,
+    "ratingRate": 4.6,
+    "ratingCount": 400,
+    "isNew": false,
+    "categoryId": "cat-jewelery",
+    "category": {
+      "id": "cat-jewelery",
+      "name": "Jewelery and Accessories",
+      "slug": "jewelery"
+    },
+    "images": [
+      {
+        "id": "img-5-1",
+        "url": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_t.png",
+        "alt": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet product image",
+        "position": 0,
+        "productId": "prod-5"
+      }
+    ],
+    "createdAt": "2026-09-24T13:00:08.650Z"
+  },
+  {
+    "id": "prod-6",
+    "fakeStoreId": 6,
+    "name": "Solid Gold Petite Micropave ",
+    "slug": "solid-gold-petite-micropave-6",
+    "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+    "price": 168,
+    "compareAtPrice": 210,
+    "ratingRate": 3.9,
+    "ratingCount": 70,
+    "isNew": false,
+    "categoryId": "cat-jewelery",
+    "category": {
+      "id": "cat-jewelery",
+      "name": "Jewelery and Accessories",
+      "slug": "jewelery"
+    },
+    "images": [
+      {
+        "id": "img-6-1",
+        "url": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_t.png",
+        "alt": "Solid Gold Petite Micropave  product image",
+        "position": 0,
+        "productId": "prod-6"
+      }
+    ],
+    "createdAt": "2026-09-25T13:00:08.650Z"
+  },
+  {
+    "id": "prod-7",
+    "fakeStoreId": 7,
+    "name": "White Gold Plated Princess",
+    "slug": "white-gold-plated-princess-7",
+    "description": "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...",
+    "price": 9.99,
+    "compareAtPrice": null,
+    "ratingRate": 3,
+    "ratingCount": 400,
+    "isNew": false,
+    "categoryId": "cat-jewelery",
+    "category": {
+      "id": "cat-jewelery",
+      "name": "Jewelery and Accessories",
+      "slug": "jewelery"
+    },
+    "images": [
+      {
+        "id": "img-7-1",
+        "url": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_t.png",
+        "alt": "White Gold Plated Princess product image",
+        "position": 0,
+        "productId": "prod-7"
+      }
+    ],
+    "createdAt": "2026-09-26T13:00:08.650Z"
+  },
+  {
+    "id": "prod-8",
+    "fakeStoreId": 8,
+    "name": "Pierced Owl Rose Gold Plated Stainless Steel Double",
+    "slug": "pierced-owl-rose-gold-plated-stainless-steel-double-8",
+    "description": "Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel",
+    "price": 10.99,
+    "compareAtPrice": null,
+    "ratingRate": 1.9,
+    "ratingCount": 100,
+    "isNew": false,
+    "categoryId": "cat-jewelery",
+    "category": {
+      "id": "cat-jewelery",
+      "name": "Jewelery and Accessories",
+      "slug": "jewelery"
+    },
+    "images": [
+      {
+        "id": "img-8-1",
+        "url": "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_t.png",
+        "alt": "Pierced Owl Rose Gold Plated Stainless Steel Double product image",
+        "position": 0,
+        "productId": "prod-8"
+      }
+    ],
+    "createdAt": "2026-09-27T13:00:08.650Z"
+  },
+  {
+    "id": "prod-15",
+    "fakeStoreId": 15,
+    "name": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
+    "slug": "biylaclesen-womens-3-in-1-snowboard-jacket-winter-coats-15",
+    "description": "Note:The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.Stand Collar Liner jacket, keep you warm in cold weather. Zippered Pockets: 2 Zippered Hand Pockets, 2 Zippered Pockets on Chest (enough to keep cards or keys)and 1 Hidden Pocket Inside.Zippered Hand Pockets and Hidden Pocket keep your things secure. Humanized Design: Adjustable and Detachable Hood and Adjustable cuff to prevent the wind and water,for a comfortable fit. 3 in 1 Detachable Design provide more convenience, you can separate the coat and inner as needed, or wear it together. It is suitable for different season and help you adapt to different climates",
+    "price": 56.99,
+    "compareAtPrice": 71.24,
+    "ratingRate": 2.6,
+    "ratingCount": 235,
+    "isNew": true,
+    "categoryId": "cat-womens-clothing",
+    "category": {
+      "id": "cat-womens-clothing",
+      "name": "Women's Clothing",
+      "slug": "womens-clothing"
+    },
+    "images": [
+      {
+        "id": "img-15-1",
+        "url": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_t.png",
+        "alt": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats product image",
+        "position": 0,
+        "productId": "prod-15"
+      }
+    ],
+    "createdAt": "2026-10-04T13:00:08.651Z"
+  },
+  {
+    "id": "prod-16",
+    "fakeStoreId": 16,
+    "name": "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
+    "slug": "lock-and-love-womens-removable-hooded-faux-leather-moto-biker-jacket-16",
+    "description": "100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket, Button detail on waist / Detail stitching at sides, HAND WASH ONLY / DO NOT BLEACH / LINE DRY / DO NOT IRON",
+    "price": 29.95,
+    "compareAtPrice": null,
+    "ratingRate": 2.9,
+    "ratingCount": 340,
+    "isNew": true,
+    "categoryId": "cat-womens-clothing",
+    "category": {
+      "id": "cat-womens-clothing",
+      "name": "Women's Clothing",
+      "slug": "womens-clothing"
+    },
+    "images": [
+      {
+        "id": "img-16-1",
+        "url": "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_t.png",
+        "alt": "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket product image",
+        "position": 0,
+        "productId": "prod-16"
+      }
+    ],
+    "createdAt": "2026-10-05T13:00:08.651Z"
+  },
+  {
+    "id": "prod-17",
+    "fakeStoreId": 17,
+    "name": "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
+    "slug": "rain-jacket-women-windbreaker-striped-climbing-raincoats-17",
+    "description": "Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.",
+    "price": 39.99,
+    "compareAtPrice": null,
+    "ratingRate": 3.8,
+    "ratingCount": 679,
+    "isNew": false,
+    "categoryId": "cat-womens-clothing",
+    "category": {
+      "id": "cat-womens-clothing",
+      "name": "Women's Clothing",
+      "slug": "womens-clothing"
+    },
+    "images": [
+      {
+        "id": "img-17-1",
+        "url": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2t.png",
+        "alt": "Rain Jacket Women Windbreaker Striped Climbing Raincoats product image",
+        "position": 0,
+        "productId": "prod-17"
+      }
+    ],
+    "createdAt": "2026-10-06T13:00:08.651Z"
+  },
+  {
+    "id": "prod-18",
+    "fakeStoreId": 18,
+    "name": "MBJ Women's Solid Short Sleeve Boat Neck V ",
+    "slug": "mbj-womens-solid-short-sleeve-boat-neck-v-18",
+    "description": "95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem",
+    "price": 9.85,
+    "compareAtPrice": null,
+    "ratingRate": 4.7,
+    "ratingCount": 130,
+    "isNew": false,
+    "categoryId": "cat-womens-clothing",
+    "category": {
+      "id": "cat-womens-clothing",
+      "name": "Women's Clothing",
+      "slug": "womens-clothing"
+    },
+    "images": [
+      {
+        "id": "img-18-1",
+        "url": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_t.png",
+        "alt": "MBJ Women's Solid Short Sleeve Boat Neck V  product image",
+        "position": 0,
+        "productId": "prod-18"
+      }
+    ],
+    "createdAt": "2026-10-07T13:00:08.651Z"
+  },
+  {
+    "id": "prod-19",
+    "fakeStoreId": 19,
+    "name": "Opna Women's Short Sleeve Moisture",
+    "slug": "opna-womens-short-sleeve-moisture-19",
+    "description": "100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort",
+    "price": 7.95,
+    "compareAtPrice": null,
+    "ratingRate": 4.5,
+    "ratingCount": 146,
+    "isNew": false,
+    "categoryId": "cat-womens-clothing",
+    "category": {
+      "id": "cat-womens-clothing",
+      "name": "Women's Clothing",
+      "slug": "womens-clothing"
+    },
+    "images": [
+      {
+        "id": "img-19-1",
+        "url": "https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_t.png",
+        "alt": "Opna Women's Short Sleeve Moisture product image",
+        "position": 0,
+        "productId": "prod-19"
+      }
+    ],
+    "createdAt": "2026-10-08T13:00:08.651Z"
+  },
+  {
+    "id": "prod-20",
+    "fakeStoreId": 20,
+    "name": "DANVOUY Womens T Shirt Casual Cotton Short",
+    "slug": "danvouy-womens-t-shirt-casual-cotton-short-20",
+    "description": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
+    "price": 12.99,
+    "compareAtPrice": null,
+    "ratingRate": 3.6,
+    "ratingCount": 145,
+    "isNew": false,
+    "categoryId": "cat-womens-clothing",
+    "category": {
+      "id": "cat-womens-clothing",
+      "name": "Women's Clothing",
+      "slug": "womens-clothing"
+    },
+    "images": [
+      {
+        "id": "img-20-1",
+        "url": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_t.png",
+        "alt": "DANVOUY Womens T Shirt Casual Cotton Short product image",
+        "position": 0,
+        "productId": "prod-20"
+      }
+    ],
+    "createdAt": "2026-10-09T13:00:08.651Z"
+  }
+];
+export default catalogData;

@@ -1,4 +1,4 @@
-import catalogData from "./catalog-data.json";
+import { catalogData } from "./catalog-data";
 
 export type FallbackProduct = {
   id: string;
@@ -27,7 +27,7 @@ export type FallbackProduct = {
   createdAt: string;
 };
 
-const items: FallbackProduct[] = catalogData as FallbackProduct[];
+const items: FallbackProduct[] = catalogData as unknown as FallbackProduct[];
 
 export type CatalogQueryParams = {
   page: number;

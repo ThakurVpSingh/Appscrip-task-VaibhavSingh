@@ -4,7 +4,7 @@ services:
     runtime: node
     region: oregon
     plan: free
-    buildCommand: npm ci && npm run build --workspace backend
+    buildCommand: npm install && npm run build --workspace backend
     startCommand: npm run db:deploy && npm run start --workspace backend
     healthCheckPath: /health
     envVars:
@@ -12,7 +12,5 @@ services:
         value: production
       - key: DATABASE_URL
         sync: false
-      - key: SHADOW_DATABASE_URL
-        sync: false
       - key: FRONTEND_ORIGIN
-        sync: false
+        value: "*"

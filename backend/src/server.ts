@@ -12,7 +12,8 @@ const app = express();
 const port = Number(process.env.PORT ?? process.env.API_PORT ?? 4000);
 const allowedOrigins = process.env.FRONTEND_ORIGIN?.split(",").map((origin) => origin.trim()) ?? ["http://localhost:3000"];
 function isAllowedOrigin(origin: string) {
-  if (allowedOrigins.includes(origin)) return true;
+  if (allowedOrigins.includes("*") || allowedOrigins.includes(origin)) return true;
+  if (origin.endsWith(".vercel.app")) return true;
   if (process.env.NODE_ENV === "production") return false;
   try {
     const parsed = new URL(origin);
