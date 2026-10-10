@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { authFetch } from "@/lib/api-client";
 
 type Address = {
   id: string;
@@ -21,7 +22,7 @@ export function CartAddressPicker({ selectedId, onSelect }: { selectedId: string
 
   useEffect(() => {
     let cancelled = false;
-    fetch(`${apiUrl}/addresses`, { credentials: "include" })
+    authFetch(`${apiUrl}/addresses`)
       .then(async (response) => {
         if (!response.ok) throw new Error("Saved addresses could not be loaded.");
         return response.json();

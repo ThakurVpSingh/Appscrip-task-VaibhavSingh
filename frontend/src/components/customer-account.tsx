@@ -7,6 +7,7 @@ import { useCart } from "./cart-provider";
 import { GoogleAddressForm } from "./google-address-form";
 import { CustomerQuickLinks } from "./customer-quick-links";
 import { OrderHistory } from "./order-history";
+import { authFetch } from "@/lib/api-client";
 
 type Address = {
   id: string;
@@ -30,7 +31,7 @@ export function CustomerAccount() {
   const [error, setError] = useState("");
 
   const loadAddresses = useCallback(async () => {
-    const response = await fetch(`${apiUrl}/addresses`, { credentials: "include" });
+    const response = await authFetch(`${apiUrl}/addresses`);
     if (!response.ok) throw new Error("Saved addresses could not be loaded.");
     const data = await response.json();
     setAddresses(data.addresses);
@@ -49,9 +50,8 @@ export function CustomerAccount() {
 
   async function deleteAddress(id: string) {
     try {
-      const response = await fetch(`${apiUrl}/addresses/${encodeURIComponent(id)}`, {
+      const response = await authFetch(`${apiUrl}/addresses/${encodeURIComponent(id)}`, {
         method: "DELETE",
-        credentials: "include",
       });
       if (!response.ok) throw new Error("This address could not be removed.");
       setAddresses((current) => current.filter((address) => address.id !== id));

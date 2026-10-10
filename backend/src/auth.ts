@@ -34,6 +34,15 @@ function readCookie(request: Request, name: string) {
     ?.slice(prefix.length);
 }
 
+function extractSessionToken(request: Request): string | undefined {
+  const authHeader = request.headers.authorization;
+  if (authHeader && authHeader.toLowerCase().startsWith("bearer ")) {
+    const raw = authHeader.slice(7).trim();
+    if (raw) return raw;
+  }
+  return readCookie(request, sessionCookie);
+}
+
 async function hashPassword(password: string) {
   const salt = randomBytes(16);
   const derived = await scrypt(password, salt, 64) as Buffer;
@@ -48,7 +57,7 @@ async function verifyPassword(password: string, stored: string) {
   return timingSafeEqual(actual, expected);
 }
 
-async function startSession(customerId: string, response: Response) {
+async function startSession(customerId: string, response: Response): Promise<string> {
   const token = randomBytes(32).toString("base64url");
   await prisma.customerSession.create({
     data: {
@@ -58,11 +67,12 @@ async function startSession(customerId: string, response: Response) {
     },
   });
   response.cookie(sessionCookie, token, cookieOptions());
+  return token;
 }
 
 export async function requireCustomer(request: Request, response: Response, next: NextFunction) {
   try {
-    const token = readCookie(request, sessionCookie);
+    const token = extractSessionToken(request);
     if (!token) {
       response.status(401).json({ error: { code: "AUTH_REQUIRED", message: "Please sign in to continue" } });
       return;
@@ -118,8 +128,8 @@ authRouter.post("/register", authRateLimit, async (request, response, next) => {
       },
       select: { id: true, name: true, email: true, createdAt: true },
     });
-    await startSession(customer.id, response);
-    response.status(201).json({ customer });
+    const token = await startSession(customer.id, response);
+    response.status(201).json({ customer, token });
   } catch (error) {
     if (typeof error === "object" && error !== null && "code" in error && error.code === "P2002") {
       response.status(409).json({ error: { code: "EMAIL_IN_USE", message: "An account already exists for this email address" } });
@@ -144,9 +154,10 @@ authRouter.post("/login", authRateLimit, async (request, response, next) => {
       });
       return;
     }
-    await startSession(customer.id, response);
+    const token = await startSession(customer.id, response);
     response.json({
       customer: { id: customer.id, name: customer.name, email: customer.email, createdAt: customer.createdAt },
+      token,
     });
   } catch (error) {
     next(error);
@@ -171,7 +182,7 @@ authRouter.get("/me", requireCustomer, async (_request, response, next) => {
 
 authRouter.post("/logout", async (request, response, next) => {
   try {
-    const token = readCookie(request, sessionCookie);
+    const token = extractSessionToken(request);
     if (token) {
       await prisma.customerSession.deleteMany({
         where: { tokenHash: createHash("sha256").update(token).digest("hex") },

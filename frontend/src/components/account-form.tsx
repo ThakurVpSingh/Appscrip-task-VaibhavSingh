@@ -5,6 +5,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "./cart-provider";
 import { useNotifications } from "./notification-provider";
+import { setAuthToken } from "@/lib/api-client";
 
 const apiUrl = process.env.NEXT_PUBLIC_PRODUCTS_API_URL ?? "http://localhost:4000";
 
@@ -43,7 +44,10 @@ export function AccountForm({ mode }: { mode: "login" | "register" }) {
         setShowRegisterPrompt(mode === "login" && data.error?.code === "INVALID_CREDENTIALS");
         throw new Error(data.error?.message ?? "We couldn’t complete your request.");
       }
-      await refreshSession();
+      if (data.token) {
+        setAuthToken(data.token);
+      }
+      await refreshSession(data.customer);
       notifications.modal(isRegister ? "account-registration-completed" : "login-completed", {
         name: data.customer?.name,
         email: data.customer?.email,
@@ -79,7 +83,7 @@ export function AccountForm({ mode }: { mode: "login" | "register" }) {
               {mode === "register" && error.includes("already exists") && <> <Link href="/account/login">Sign in instead</Link>.</>}
             </span>
           </div>}
-          <button className="button button-dark account-submit" type="submit" disabled={pending || !hydrated}>{pending ? "One moment…" : isRegister ? "Create account" : "Sign in"}</button>
+          <button className="button button-dark account-submit" type="submit" disabled={pending}>{pending ? "One moment…" : isRegister ? "Create account" : "Sign in"}</button>
         </form>
         <p className="account-switch">{isRegister ? "Already have an account?" : "New to Studio & Co.?"} <Link href={isRegister ? "/account/login" : "/account/register"}>{isRegister ? "Sign in" : "Create an account"}</Link></p>
         <Link className="text-link account-back" href="/">← Continue browsing</Link>

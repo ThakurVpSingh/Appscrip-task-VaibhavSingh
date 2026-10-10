@@ -7,6 +7,7 @@ import { useCart } from "./cart-provider";
 import { CartAddressPicker } from "./cart-address-picker";
 import { CustomerQuickLinks } from "./customer-quick-links";
 import { useNotifications } from "./notification-provider";
+import { authFetch } from "@/lib/api-client";
 
 const apiUrl = process.env.NEXT_PUBLIC_PRODUCTS_API_URL ?? "http://localhost:4000";
 
@@ -47,9 +48,8 @@ export function ShoppingCart() {
     setError("");
     setCheckoutPending(true);
     try {
-      const response = await fetch(`${apiUrl}/orders/checkout`, {
+      const response = await authFetch(`${apiUrl}/orders/checkout`, {
         method: "POST",
-        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ addressId: selectedAddressId }),
       });

@@ -2,6 +2,7 @@
 
 import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { Product } from "@/lib/products";
+import { authFetch, clearAuthToken } from "@/lib/api-client";
 
 type CartLine = { product: Product; quantity: number };
 type Customer = { id: string; name: string; email: string; createdAt: string };
@@ -15,7 +16,7 @@ type CartContextValue = {
   addItem: (product: Product) => Promise<void>;
   setQuantity: (productId: string, quantity: number) => Promise<void>;
   removeItem: (productId: string) => Promise<void>;
-  refreshSession: () => Promise<void>;
+  refreshSession: (knownCustomer?: Customer | null) => Promise<void>;
   signOut: () => Promise<void>;
   clearNotice: () => void;
 };
@@ -37,10 +38,10 @@ function parseItems(value: string | null): CartLine[] {
 }
 
 async function readCart(): Promise<CartLine[]> {
-  const response = await fetch(`${apiUrl}/cart`, { credentials: "include" });
-  if (!response.ok) throw new Error("Could not load your saved bag.");
+  const response = await authFetch(`${apiUrl}/cart`);
+  if (!response.ok) return [];
   const data = await response.json();
-  return data.items.map((item: { product: Product; quantity: number }) => ({
+  return (data.items ?? []).map((item: { product: Product; quantity: number }) => ({
     product: item.product,
     quantity: item.quantity,
   }));
@@ -58,7 +59,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const guestItems = parseItems(localStorage.getItem(storageKey));
       setItems(guestItems);
       try {
-        const response = await fetch(`${apiUrl}/auth/me`, { credentials: "include" });
+        const response = await authFetch(`${apiUrl}/auth/me`);
         if (response.ok) {
           const data = await response.json();
           const serverItems = await readCart();
@@ -67,12 +68,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
             setItems(serverItems);
             localStorage.removeItem(storageKey);
           }
+        } else if (response.status === 401) {
+          clearAuthToken();
         }
+      } catch (error: unknown) {
+        console.error("Could not initialize customer session", error);
       } finally {
         if (!cancelled) setReady(true);
       }
     }
-    void initialize().catch((error: unknown) => console.error("Could not initialize customer session", error));
+    void initialize();
     return () => { cancelled = true; };
   }, []);
 
@@ -81,16 +86,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
     localStorage.setItem(storageKey, JSON.stringify(items));
   }, [customer, items, ready]);
 
-  const refreshSession = useCallback(async () => {
-    const response = await fetch(`${apiUrl}/auth/me`, { credentials: "include" });
-    if (!response.ok) throw new Error("Your account session could not be loaded.");
-    const data = await response.json();
+  const refreshSession = useCallback(async (knownCustomer?: Customer | null) => {
+    let currentCustomer = knownCustomer ?? null;
+    if (!currentCustomer) {
+      const response = await authFetch(`${apiUrl}/auth/me`);
+      if (!response.ok) throw new Error("Your account session could not be loaded.");
+      const data = await response.json();
+      currentCustomer = data.customer;
+    }
     const guestItems = parseItems(localStorage.getItem(storageKey));
     let skippedItems = false;
     for (const item of guestItems) {
-      const addResponse = await fetch(`${apiUrl}/cart/items`, {
+      const addResponse = await authFetch(`${apiUrl}/cart/items`, {
         method: "POST",
-        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ productId: item.product.id, quantity: item.quantity }),
       });
@@ -102,7 +110,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
     const serverItems = await readCart();
     localStorage.removeItem(storageKey);
-    setCustomer(data.customer);
+    setCustomer(currentCustomer);
     setItems(serverItems);
     setReady(true);
     if (skippedItems) setNotice("Some items in your previous bag are no longer available and weren’t transferred.");
@@ -110,9 +118,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const addItem = useCallback(async (product: Product) => {
     if (customer) {
-      const response = await fetch(`${apiUrl}/cart/items`, {
+      const response = await authFetch(`${apiUrl}/cart/items`, {
         method: "POST",
-        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ productId: product.id, quantity: 1 }),
       });
@@ -131,9 +138,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const setQuantity = useCallback(async (productId: string, quantity: number) => {
     if (quantity < 1 || quantity > 10) return;
     if (customer) {
-      const response = await fetch(`${apiUrl}/cart/items/${encodeURIComponent(productId)}`, {
+      const response = await authFetch(`${apiUrl}/cart/items/${encodeURIComponent(productId)}`, {
         method: "PUT",
-        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ quantity }),
       });
@@ -146,9 +152,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const removeItem = useCallback(async (productId: string) => {
     if (customer) {
-      const response = await fetch(`${apiUrl}/cart/items/${encodeURIComponent(productId)}`, {
+      const response = await authFetch(`${apiUrl}/cart/items/${encodeURIComponent(productId)}`, {
         method: "DELETE",
-        credentials: "include",
       });
       if (!response.ok) throw new Error("Could not remove this item.");
     }
@@ -156,9 +161,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [customer]);
 
   const signOut = useCallback(async () => {
-    const response = await fetch(`${apiUrl}/auth/logout`, { method: "POST", credentials: "include" });
-    if (!response.ok) throw new Error("Could not sign out.");
-    setCustomer(null);
+    try {
+      await authFetch(`${apiUrl}/auth/logout`, { method: "POST" });
+    } finally {
+      clearAuthToken();
+      setCustomer(null);
+      setItems([]);
+    }
   }, []);
 
   const clearNotice = useCallback(() => setNotice(""), []);

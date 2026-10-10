@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { CustomerQuickLinks } from "./customer-quick-links";
+import { authFetch } from "@/lib/api-client";
 
 type InvoiceOrder = {
   id: string;
@@ -34,7 +35,7 @@ export function OrderInvoice() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch(`${apiUrl}/orders/${encodeURIComponent(params.orderId)}`, { credentials: "include" })
+    authFetch(`${apiUrl}/orders/${encodeURIComponent(params.orderId)}`)
       .then(async (response) => {
         const data = await response.json();
         if (!response.ok) throw new Error(data.error?.message ?? "Invoice could not be loaded.");

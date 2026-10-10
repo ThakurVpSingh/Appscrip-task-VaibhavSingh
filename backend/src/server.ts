@@ -27,6 +27,7 @@ function isAllowedOrigin(origin: string) {
 app.use(cors({
   origin: (origin, callback) => callback(null, !origin || isAllowedOrigin(origin)),
   credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
 }));
 app.post("/orders/stripe-webhook", express.raw({ type: "application/json" }), (request, response, next) => {
   void handleStripeWebhook(request, response).catch(next);

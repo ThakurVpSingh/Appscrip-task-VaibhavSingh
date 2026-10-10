@@ -5,6 +5,7 @@ import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useNotifications } from "./notification-provider";
 import { CustomerQuickLinks } from "./customer-quick-links";
+import { authFetch } from "@/lib/api-client";
 
 const apiUrl = process.env.NEXT_PUBLIC_PRODUCTS_API_URL ?? "http://localhost:4000";
 
@@ -22,9 +23,8 @@ function CheckoutConfirmation() {
       return;
     }
     let cancelled = false;
-    fetch(`${apiUrl}/orders/confirm`, {
+    authFetch(`${apiUrl}/orders/confirm`, {
       method: "POST",
-      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ sessionId }),
     }).then(async (response) => {

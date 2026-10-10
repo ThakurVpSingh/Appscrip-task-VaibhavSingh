@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { useNotifications } from "./notification-provider";
+import { authFetch } from "@/lib/api-client";
 
 type AddressFields = {
   fullName: string;
@@ -124,9 +125,8 @@ export function GoogleAddressForm({ onSaved }: { onSaved: (address: SavedAddress
     setPending(true);
     setError("");
     try {
-      const response = await fetch(`${apiUrl}/addresses`, {
+      const response = await authFetch(`${apiUrl}/addresses`, {
         method: "POST",
-        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...fields, ...coordinates }),
       });

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { authFetch } from "@/lib/api-client";
 
 type OrderItem = {
   id: string;
@@ -45,7 +46,7 @@ export function OrderHistory() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch(`${apiUrl}/orders`, { credentials: "include" })
+    authFetch(`${apiUrl}/orders`)
       .then(async (response) => {
         if (!response.ok) throw new Error("Your order history could not be loaded.");
         return response.json();
